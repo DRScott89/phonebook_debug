@@ -19,13 +19,13 @@ def load_user(user_id):
 
 class User(db.Model, UserMixin):
     id = db.Column(db.String, primary_key = True)
-    first_name = db.Column(db.String(150), nullable = True, default='')
-    last_name = db.Column(db.String(150), nullable = True, default='')
+    first_name = db.Column(db.String(150), nullable = True, default ='')
+    last_name = db.Column(db.String(150), nullable = True, default ='')
     email = db.Column(db.String(150), nullable = False)
-    password = db.Column(db.String, nullable = True, default='')
+    password = db.Column(db.String, nullable = True, default = '')
     g_auth_verify = db.Column(db.Boolean, default = False)
     token = db.Column(db.String, default = '', unique = True)
-    date_created = db.Column(db.DateTime, nullable = False, default=datetime.utcnow)
+    date_created = db.Column(db.DateTime, nullable = False, default = datetime.utcnow)
 
     def __init__(self, email, first_name='', last_name='', password='', token='', g_auth_verify=False):
         self.id = self.set_id()
@@ -50,14 +50,14 @@ class User(db.Model, UserMixin):
         return f'User {self.email} has been added to the database'
     
 class Contact(db.Model):
-    id = db.Column(db.String, primary_key=True)
-    name = db.Column(db.string(150), nullable = False)
+    id = db.Column(db.String, primary_key = True)
+    name = db.Column(db.String(150), nullable = False)
     email = db.Column(db.String(200))
     phone_number = db.Column(db.String(20))
     address = db.Column(db.String(200))
     user_token = db.Column(db.String, db.ForeignKey('user.token'), nullable = False)
 
-    def __init__(self, name, email, phone_number, address, user_token, id=''):
+    def __init__(self, name, email, phone_number, address, user_token, id =''):
         self.id = self.set_id()
         self.name = name
         self.email = email
